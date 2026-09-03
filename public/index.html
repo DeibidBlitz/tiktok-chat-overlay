@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>TikTok Chat Overlay Beta</title>
+    <title>TikTok Chat Overlay</title>
     <style>
         body {
-            background-color: transparent; /* Fondo transparente clave para el lienzo */
+            background-color: transparent;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
             margin: 0;
@@ -27,7 +27,7 @@
             word-break: break-word;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             animation: fadeIn 0.3s ease-in-out;
-            border-left: 4px solid #fe2c55; /* Toque estilo TikTok */
+            border-left: 4px solid #fe2c55;
         }
         .chat-message span.user {
             font-weight: bold;
@@ -44,7 +44,7 @@
 
     <div id="chat-container"></div>
 
-    <!-- Script de Socket.io que provee el servidor local -->
+    <!-- Script de Socket.io provisto por el servidor -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
@@ -57,18 +57,13 @@
             
             chatContainer.appendChild(messageDiv);
 
-            // Mantener solo los últimos 12 mensajes en pantalla para no saturar el overlay
+            // Mantener solo los últimos 12 mensajes
             if (chatContainer.children.length > 12) {
                 chatContainer.removeChild(chatContainer.children[0]);
             }
 
-            // Auto-scroll hacia abajo
             window.scrollTo(0, document.body.scrollHeight);
         });
     </script>
-</body><body>
-    <div id="chat-container">
-        <p>¡Overlay de TikTok conectado correctamente!</p>
-    </div>
 </body>
 </html>
