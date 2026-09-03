@@ -7,7 +7,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const tiktokUsername = "deibidblitz"; 
+// 1. Pon esto arriba para que cargue la carpeta public de inmediato
+app.use(express.static('public'));
+
+const tiktokUsername = "deibidblitz";
 const tiktokChat = new WebcastPushConnection(tiktokUsername);
 
 tiktokChat.connect().then(state => {
@@ -25,9 +28,8 @@ tiktokChat.on('chat', data => {
     });
 });
 
-app.use(express.static('public'));
-
-const PORT = 3000;
+// 2. Usa el puerto dinámico de Render
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-    console.log(`Servidor beta corriendo en: http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en puerto ${PORT}`);
 });
